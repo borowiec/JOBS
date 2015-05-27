@@ -8,6 +8,8 @@ Aktualnie użytkownik może dodawać nowych pracowników, usuwać, a także korz
 - pobieranie nazwy uzytkownika dzieki czemu plik zapisuje sie/odczytuje na pulpicie
 
 */
+
+//GITHUB TEST
 #include <iostream>     /* cout */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
