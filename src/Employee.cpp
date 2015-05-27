@@ -3,7 +3,7 @@
 #include <iomanip>      //do formatowania
 using namespace std;
 
-int Employee::number;
+
 
 ///////////////////KONSTRUKTORY////////////////////////
 Employee::Employee()
@@ -15,7 +15,6 @@ Employee::Employee()
     salary=0.00;
     satisfaction=0;
     result[0]={0};
-    number++;
 }
 
 Employee::Employee(string n,string m,string comp,char c,int s,double sd,int t[])
@@ -28,12 +27,11 @@ Employee::Employee(string n,string m,string comp,char c,int s,double sd,int t[])
     satisfaction=s;
     for(int i=0;i<12;i++)
     result[i]=t[i];
-    number++;
 }
 //////////////////////DEKONSTRUKTOR////////////////////////////////
 Employee::~Employee()
 {
-    number--;
+    ;
 }
 
 //////////////////FUNKCJE POKAZOWE/////////////////////////
@@ -86,11 +84,6 @@ void Employee::show_result()
     for(int i=0;i<12;i++)
         std::cout<<result[i]<<" | ";
     std::cout<<"\n";
-}
-
-int Employee::show_number()
-{
-   return number;
 }
 
 void Employee::present()

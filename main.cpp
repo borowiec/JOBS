@@ -71,12 +71,13 @@ int main()
         switch(choice)
         {
             case 0: //opuszczenie switch, wyjscie z programu
-                cout<<"Do widzenia!\nAll right reserved by Mateusz Borowiec\n";
-                break;
+                {
+                    cout<<"Do widzenia!\nAll right reserved by Mateusz Borowiec\n";
+                    break;
+                }
 
             case 1: //wyswietlenie dynamicznej tablicy
                 {
-
                     wyswietl_emp_tab(emp_tab);
                     break;
                 }
@@ -97,18 +98,18 @@ int main()
                     {
                         do
                         {
-                        if(cin.fail())
-                        {
-                            cin.clear();    //kasowanie flagi bledu strumienia
-                            cin.sync();     //kasowanie zbednych znaków z bufora
-                            cout<<"Zle dane!\n";
-                        }
-                        cout<<"Podaj numer pracownika, ktorego chcesz usunac (1-"<<emp_tab.size()<<"): ";
-                        cin>>who;
+                            if(cin.fail())
+                            {
+                                cin.clear();    //kasowanie flagi bledu strumienia
+                                cin.sync();     //kasowanie zbednych znaków z bufora
+                                cout<<"Zle dane!\n";
+                            }
+                            cout<<"Podaj numer pracownika, ktorego chcesz usunac (1-"<<emp_tab.size()<<"): ";
+                            cin>>who;
                         } while(who<=0 || who>(emp_tab.size()));
                         who--;
                         //if((emp_tab.begin()+who)>(emp_tab.begin()+a))
-                            emp_tab.erase(emp_tab.begin()+who);
+                        emp_tab.erase(emp_tab.begin()+who);
                     }
                     else cout<<"Nie mozna usunac! Pusta baza!\n";
 
@@ -120,7 +121,6 @@ int main()
                 {
                     if(emp_tab.size())
                         write_to_file(emp_tab);
-
                     else cout<<"Nie ma co zapisaæ! Pusta baza!\n";
                     break;
                 }
@@ -155,7 +155,7 @@ void wyswietl_emp_tab(vector <Employee> &tab )
         for(int i=0;i<tab.size();i++)
            tab[i].present();
         }
-    cout<<"Pracownikow: "<<Employee::show_number()<<"\n";
+    cout<<"Pracownikow: "<<tab.size()<<"\n";
 }
 
 string return_username()
@@ -225,10 +225,8 @@ int read_from_file(vector <Employee> &tab,string read_path)
         {
             lwiersz++;
             if(lwiersz==1) continue; //pomijamy 1 wiersz (legende)
-
             stringstream ss(wiersz);
             Employee *empl = new Employee(); //utworzenie dynamicznego obiektu
-
             //uzupelnianie danych nowego obiektu:
             //imie
             getline(ss, item, ';');
@@ -249,14 +247,15 @@ int read_from_file(vector <Employee> &tab,string read_path)
             getline(ss, item, '\n');
             empl->set_salary(atof(item.c_str()));
 
+
             //dodanie obiektu do tablicy
             tab.push_back(*empl);
+
             cout<<"Utworzono "<<tab.size()<<" obiektow\n";
 
         }
     file.close();
     return 1;
-
     }
     else
     {

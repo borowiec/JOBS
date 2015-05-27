@@ -32,12 +32,12 @@
 1431950157 e:\cpp programy\jobs\include\employer.h
 	"Person.h"
 
-1432763489 source:e:\github\jobs\jobs\src\employee.cpp
+1432765647 source:e:\github\jobs\jobs\src\employee.cpp
 	"Employee.h"
 	<iostream>
 	<iomanip>
 
-1432762164 e:\github\jobs\jobs\include\employee.h
+1432766236 e:\github\jobs\jobs\include\employee.h
 	<string>
 	"Person.h"
 
@@ -53,7 +53,7 @@
 1431949012 source:e:\github\jobs\jobs\src\person.cpp
 	"Person.h"
 
-1432762943 source:e:\github\jobs\jobs\main.cpp
+1432766168 source:e:\github\jobs\jobs\main.cpp
 	<iostream>
 	<stdlib.h>
 	<time.h>
