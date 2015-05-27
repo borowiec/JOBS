@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1431949012 source:e:\cpp programy\jobs\src\person.cpp
+	"Person.h"
+
+1431992087 e:\cpp programy\jobs\include\person.h
+	<string>
+
+1432674755 source:e:\cpp programy\jobs\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	<locale.h>
+	<vector>
+	<fstream>
+	<string>
+	<sstream>
+	<windows.h>
+	"Employee.h"
+
+1432634142 e:\cpp programy\jobs\include\employee.h
+	<string>
+	"Person.h"
+
+1432554368 source:e:\cpp programy\jobs\src\employee.cpp
+	"Employee.h"
+	<iostream>
+	<iomanip>
+
+1431949535 source:e:\cpp programy\jobs\src\employer.cpp
+	"Employer.h"
+
+1431950157 e:\cpp programy\jobs\include\employer.h
+	"Person.h"
+
