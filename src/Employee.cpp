@@ -3,6 +3,8 @@
 #include <iomanip>      //do formatowania
 using namespace std;
 
+int Employee::number;
+
 ///////////////////KONSTRUKTORY////////////////////////
 Employee::Employee()
 {
@@ -13,6 +15,7 @@ Employee::Employee()
     salary=0.00;
     satisfaction=0;
     result[0]={0};
+    number++;
 }
 
 Employee::Employee(string n,string m,string comp,char c,int s,double sd,int t[])
@@ -25,11 +28,12 @@ Employee::Employee(string n,string m,string comp,char c,int s,double sd,int t[])
     satisfaction=s;
     for(int i=0;i<12;i++)
     result[i]=t[i];
+    number++;
 }
 //////////////////////DEKONSTRUKTOR////////////////////////////////
 Employee::~Employee()
 {
-    ;
+    number--;
 }
 
 //////////////////FUNKCJE POKAZOWE/////////////////////////
@@ -86,7 +90,7 @@ void Employee::show_result()
 
 int Employee::show_number()
 {
-   ;
+   return number;
 }
 
 void Employee::present()
@@ -99,7 +103,6 @@ void Employee::present()
     show_salary();
     show_satif();
     show_result();
-    show_number();
     cout<<"=========================================================================\n";
 }
 //============================================================
@@ -152,38 +155,29 @@ void Employee::set_employee()
     double sal;
 
     //wprowadzanie danych
-    cout<<"Podaj imiê: ";
+    cout<<"Podaj imie: ";
     cin>>n;
     cout<<"Podaj nazwisko: ";
     cin>>sr;
-    cout<<"Podaj p³eæ (M/K): ";
+    cout<<"Podaj plec (M/K): ";
     do
     {
         cin.clear();
         cin.sync();
         cin>>sx;
         if(sx!='M' && sx!='K')
-            cout<<"Niew³aœciwy znak. Spróbuj jeszcze raz: ";
+            cout<<"Niewlasciwy znak. Spróbuj jeszcze raz: ";
     } while((sx!='M' && sx!='K'));
-//    cin>>sx;
-//    //zabezpieczenie przed niew³aœciwymi znakami
-//    while(sx!=75 || sx!=77)
-//    {
-//        cout<<"Poda³eœ niew³aœciwy znak!\nJeszcze raz: ";
-//        cin.clear();
-//        cin.sync();
-//        cin>>sx;
-//        if(sx==75 || sx==77) break;
-//    }
+
     cin.sync();
-    cout<<"Podaj nazwê firmy: ";
+    cout<<"Podaj nazwe firmy: ";
     getline(cin,cmp);
     cout<<"Podaj zadowolenie w % (0-100): ";
     do
     {
         cin>>sat;
         if((sat<1 || sat>100))
-            cout<<"Wartoœæ poza zakresem.Spróbuj jeszcze raz: ";
+            cout<<"Wartosc poza zakresem.Spróbuj jeszcze raz: ";
         if(cin.fail())
         {
             cin.clear();

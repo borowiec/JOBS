@@ -15,7 +15,7 @@ class Employee: public Person
         int show_satif();
         double show_salary();
         void show_result();
-        int show_number();
+        static int show_number();
         //========prezentacja==========
         void present();
         //=============================
@@ -44,6 +44,7 @@ class Employee: public Person
         double salary;          //wynagrodzenie
         int satisfaction;       //zadowolenie w %
         int result[12]={0};     //miesieczny zysk dla firmy
+        static int number;
 };
 
 #endif // EMPLOYEE_H

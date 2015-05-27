@@ -1,15 +1,14 @@
 /*
 Program operuje na dynamicznej bazie danych pracownikow.
-Aktualnie uÅ¼ytkownik moÅ¼e dodawaÄ‡ nowych pracownikÃ³w, usuwaÄ‡, a takÅ¼e korzystaÄ‡ z zapisu i odczytu plikÃ³w CSV.
+Aktualnie u¿ytkownik mo¿e dodawaæ nowych pracowników, usuwaæ, a tak¿e korzystaæ z zapisu i odczytu plików CSV.
 
 - dodano mozliwosc wyboru pracownika do usuniecia
 - poprawiono blad zwiazany z dodawaniem kolejnych obiektow podczas wczytywania
 - wydzielone funkcje
 - pobieranie nazwy uzytkownika dzieki czemu plik zapisuje sie/odczytuje na pulpicie
-
+- dodano wyswietlanie liczby pracownikow - uzyto pola statycznego klasy
 */
 
-//GITHUB TEST
 #include <iostream>     /* cout */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
@@ -30,20 +29,19 @@ int read_from_file(vector <Employee> &tab,string path="C:\\Users\\"+return_usern
 
 int main()
 {
-    setlocale(LC_ALL,"");   //polskie znaki w konsoli
     //Person p1; blad! nie mozna tworzyc obiektu klasy abstrakcyjnej!
     srand(time( NULL ));    //start czasu
 
     int choice=1;           //zmienna do wyboru opcji
-    int a=0;                //zmienna indeksowa dynamicznej tablicy obiektÃ³w
+    int a=0;                //zmienna indeksowa dynamicznej tablicy obiektów
     string linia(60,'*');   //graficzna linia
 
-    //losowa tablica wynikÃ³w
+    //losowa tablica wyników
     int tab[12];
     for(int i=0;i<12;i++)
     tab[i]=rand() % 56 + 44;   // 44-100
 
-    //dynamiczna tablica obiektÃ³w typu Employee
+    //dynamiczna tablica obiektów typu Employee
     vector <Employee> emp_tab;
 
     //======================MENU==============================================
@@ -62,11 +60,11 @@ int main()
 
         cout<<"Twoj wybor: ";
         cin>>choice;
-        while(cin.fail()) // dopÃ³ki podawane sa bledne dane
+        while(cin.fail()) // dopóki podawane sa bledne dane
         {
           cout<<"Podaj liczbe z zakresu! "; //komunikat bledu
           cin.clear();                      //kasowanie flagi bledu strumienia
-          cin.sync();                       //kasowanie zbednych znakÃ³w z bufora
+          cin.sync();                       //kasowanie zbednych znaków z bufora
           cin>>choice;
         }
 
@@ -75,8 +73,10 @@ int main()
             case 0: //opuszczenie switch, wyjscie z programu
                 cout<<"Do widzenia!\nAll right reserved by Mateusz Borowiec\n";
                 break;
+
             case 1: //wyswietlenie dynamicznej tablicy
                 {
+
                     wyswietl_emp_tab(emp_tab);
                     break;
                 }
@@ -86,7 +86,7 @@ int main()
                     cout<<"Dodawanie nowego pracownika:\n";
                     emp_tab.push_back(Employee());
                     a++;
-                    emp_tab[a-1].set_employee();
+                    emp_tab[emp_tab.size()-1].set_employee();
                     break;
                 }
 
@@ -100,7 +100,7 @@ int main()
                         if(cin.fail())
                         {
                             cin.clear();    //kasowanie flagi bledu strumienia
-                            cin.sync();     //kasowanie zbednych znakÃ³w z bufora
+                            cin.sync();     //kasowanie zbednych znaków z bufora
                             cout<<"Zle dane!\n";
                         }
                         cout<<"Podaj numer pracownika, ktorego chcesz usunac (1-"<<emp_tab.size()<<"): ";
@@ -119,9 +119,9 @@ int main()
             case 4: //zapis do pliku CSV
                 {
                     if(emp_tab.size())
-                        write_to_file(emp_tab);  //dodac sprawdzanie czy zapis sie powiodl
+                        write_to_file(emp_tab);
 
-                    else cout<<"Nie ma co zapisaÄ‡! Pusta baza!\n";
+                    else cout<<"Nie ma co zapisaæ! Pusta baza!\n";
                     break;
                 }
 
@@ -155,6 +155,7 @@ void wyswietl_emp_tab(vector <Employee> &tab )
         for(int i=0;i<tab.size();i++)
            tab[i].present();
         }
+    cout<<"Pracownikow: "<<Employee::show_number()<<"\n";
 }
 
 string return_username()
