@@ -2,22 +2,28 @@
 #define PERSON_H
 #include <string>
 using namespace std;
-//Interfejs to klasa abstrakcyjna która ma tylko i wy³¹cznie metody czysto wirtualne i nie ma ¿adnych pól.
-//Aby klasa by³a abstrakcyjna to musi mieæ przynajmniej jedn¹ metodê czysto wirtualn¹ - czyli metodê wirtualn¹ która nie ma cia³a
+//Interfejs to klasa abstrakcyjna ktÃ³ra ma tylko i wylacznie metody czysto wirtualne i nie ma zadnych pÃ³l.
+//Aby klasa byla abstrakcyjna to musi mieÃ¦ przynajmniej jedna metode czysto wirtualna=0
+//Klasa PERSON jest klasÄ… abstrakcyjnÄ…. Nie reprezentuje Å¼adnego konkretnego obiektu, nie da siÄ™ teÅ¼ go utworzyÄ‡.
+
 
 class Person
 {
     public:
         Person();
         virtual ~Person();
+        virtual string show_name()=0;
+        virtual string show_surname()=0;
+        virtual char show_sex()=0;
+        virtual void set_name(string n)=0;
+        virtual void set_surname(string s)=0;
+        virtual void set_sex(char c)=0;
     protected:
         string name;
         string surname;
         char sex;
         string company;
     private:
-
-
 };
 
 #endif // PERSON_H

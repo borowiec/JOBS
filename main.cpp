@@ -1,6 +1,6 @@
 /*
 Program operuje na dynamicznej bazie danych pracownikow.
-Aktualnie u¿ytkownik mo¿e dodawaæ nowych pracowników, usuwaæ, a tak¿e korzystaæ z zapisu i odczytu plików CSV.
+Aktualnie uÂ¿ytkownik moÂ¿e dodawaÃ¦ nowych pracownikÃ³w, usuwaÃ¦, a takÂ¿e korzystaÃ¦ z zapisu i odczytu plikÃ³w CSV.
 
 - dodano mozliwosc wyboru pracownika do usuniecia
 - poprawiono blad zwiazany z dodawaniem kolejnych obiektow podczas wczytywania
@@ -33,15 +33,15 @@ int main()
     srand(time( NULL ));    //start czasu
 
     int choice=1;           //zmienna do wyboru opcji
-    int a=0;                //zmienna indeksowa dynamicznej tablicy obiektów
+    int a=0;                //zmienna indeksowa dynamicznej tablicy obiektÃ³w
     string linia(60,'*');   //graficzna linia
 
-    //losowa tablica wyników
+    //losowa tablica wynikÃ³w
     int tab[12];
     for(int i=0;i<12;i++)
     tab[i]=rand() % 56 + 44;   // 44-100
 
-    //dynamiczna tablica obiektów typu Employee
+    //dynamiczna tablica obiektÃ³w typu Employee
     vector <Employee> emp_tab;
 
     //======================MENU==============================================
@@ -60,11 +60,11 @@ int main()
 
         cout<<"Twoj wybor: ";
         cin>>choice;
-        while(cin.fail()) // dopóki podawane sa bledne dane
+        while(cin.fail()) // dopÃ³ki podawane sa bledne dane
         {
           cout<<"Podaj liczbe z zakresu! "; //komunikat bledu
           cin.clear();                      //kasowanie flagi bledu strumienia
-          cin.sync();                       //kasowanie zbednych znaków z bufora
+          cin.sync();                       //kasowanie zbednych znakÃ³w z bufora
           cin>>choice;
         }
 
@@ -101,7 +101,7 @@ int main()
                             if(cin.fail())
                             {
                                 cin.clear();    //kasowanie flagi bledu strumienia
-                                cin.sync();     //kasowanie zbednych znaków z bufora
+                                cin.sync();     //kasowanie zbednych znakÃ³w z bufora
                                 cout<<"Zle dane!\n";
                             }
                             cout<<"Podaj numer pracownika, ktorego chcesz usunac (1-"<<emp_tab.size()<<"): ";
@@ -121,7 +121,7 @@ int main()
                 {
                     if(emp_tab.size())
                         write_to_file(emp_tab);
-                    else cout<<"Nie ma co zapisaæ! Pusta baza!\n";
+                    else cout<<"Nie ma co zapisac! Pusta baza!\n";
                     break;
                 }
 
@@ -167,7 +167,7 @@ string return_username()
     return str;
 }
 
-int write_to_file(vector <Employee> &tab, string write_path)
+int write_to_file(vector <Employee> &tab, string write_path) //& przesÅ‚anie przez referencjÄ™
 {
     ofstream NewFile;
     //string write_path;
@@ -247,9 +247,10 @@ int read_from_file(vector <Employee> &tab,string read_path)
             getline(ss, item, '\n');
             empl->set_salary(atof(item.c_str()));
 
-
             //dodanie obiektu do tablicy
             tab.push_back(*empl);
+            delete empl;
+            empl=0;
 
             cout<<"Utworzono "<<tab.size()<<" obiektow\n";
 
