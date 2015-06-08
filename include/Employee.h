@@ -8,10 +8,6 @@ class Employee: public Person
 {
     public:
 
-        string show_name();
-        string show_surname();
-        char show_sex();
-        string show_company();
         int show_satif();
         double show_salary();
         void show_result();
@@ -20,10 +16,6 @@ class Employee: public Person
         void present();
         //=============================
 
-        void set_name(string n);
-        void set_surname(string s);
-        void set_sex(char c);
-        void set_company(string c);
         void set_satif(int s);
         void set_salary(double s);
         void set_result();

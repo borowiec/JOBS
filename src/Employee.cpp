@@ -35,33 +35,7 @@ Employee::~Employee()
 }
 
 //////////////////FUNKCJE POKAZOWE/////////////////////////
-string Employee::show_name()
-{
-    cout.width(13);
-    cout<<left<<"Name: "<<name<<endl;
-    return name;
-}
 
-string Employee::show_surname()
-{
-    cout.width(13);
-    cout<<"Surname: "<<surname<<std::endl;
-    return surname;
-}
-
-char Employee::show_sex()
-{
-    cout.width(13);
-    cout<<"Sex: "<<sex<<endl;
-    return sex;
-}
-
-string Employee::show_company()
-{
-    cout.width(13);
-    std::cout<<"Company: "<<company<<std::endl;
-    return company;
-}
 
 int Employee::show_satif()
 {
@@ -100,25 +74,7 @@ void Employee::present()
 }
 //============================================================
 ////////////////////////////FUNKCJE USTAWIAJACE////////////////////////////
-void Employee::set_name(string n)
-{
-    name=n;
-}
 
-void Employee::set_surname(string s)
-{
-    surname=s;
-}
-
-void Employee::set_sex(char c)
-{
-    sex=c;
-}
-
-void Employee::set_company(string c)
-{
-    company=c;
-}
 
 void Employee::set_satif(int s)
 {

@@ -29,33 +29,6 @@ Employer::~Employer()
 }
 
 //////////////////FUNKCJE POKAZOWE/////////////////////////
-string Employer::show_name()
-{
-    cout.width(13);
-    cout<<left<<"Name: "<<name<<endl;
-    return name;
-}
-
-string Employer::show_surname()
-{
-    cout.width(13);
-    cout<<"Surname: "<<surname<<std::endl;
-    return surname;
-}
-
-char Employer::show_sex()
-{
-    cout.width(13);
-    cout<<"Sex: "<<sex<<endl;
-    return sex;
-}
-
-string Employer::show_company()
-{
-    cout.width(13);
-    std::cout<<"Company: "<<company<<std::endl;
-    return company;
-}
 
 double Employer::show_salary()
 {
@@ -76,25 +49,7 @@ void Employer::present()
 }
 //============================================================
 ////////////////////////////FUNKCJE USTAWIAJACE////////////////////////////
-void Employer::set_name(string n)
-{
-    name=n;
-}
 
-void Employer::set_surname(string s)
-{
-    surname=s;
-}
-
-void Employer::set_sex(char c)
-{
-    sex=c;
-}
-
-void Employer::set_company(string c)
-{
-    company=c;
-}
 
 void Employer::set_salary(double s)
 {
