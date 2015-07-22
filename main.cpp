@@ -20,32 +20,32 @@ Aktualnie u¿ytkownik mo¿e dodawaæ nowych pracowników, usuwaæ, a tak¿e korz
 #include <windows.h>    /* GetUserName */
 #include "Employee.h"   //klasa pracownik
 //#include "Employer.h" //klasa pracodawca
+
 using namespace std;
 
-void wyswietl_emp_tab(vector < Employee > &tab );
+void print_emp_tab(vector < Employee > &tab );
 string return_username();
 int write_to_file(vector <Employee> &tab, string path="C:\\Users\\"+return_username()+"\\Desktop\\plik.csv");
 int read_from_file(vector <Employee> &tab,string path="C:\\Users\\"+return_username()+"\\Desktop\\plik.csv");
 
 int main()
 {
-    //Person p1; blad! nie mozna tworzyc obiektu klasy abstrakcyjnej!
     srand(time( NULL ));    //start czasu
 
-    int choice=1;           //zmienna do wyboru opcji
-    int a=0;                //zmienna indeksowa dynamicznej tablicy obiektów
-    string linia(60,'*');   //graficzna linia
+    int i=0;                //zmienna indeksowa dynamicznej tablicy obiektów
 
     //losowa tablica wyników
     int tab[12];
+    tab[0]=tab[0];
     for(int i=0;i<12;i++)
-    tab[i]=rand() % 56 + 44;   // 44-100
+        tab[i]=rand() % 56 + 44;   // 44-100
 
     //dynamiczna tablica obiektów typu Employee
     vector <Employee> emp_tab;
 
+    string line(60,'*');   //graficzna linia
     //======================MENU==============================================
-    cout<<linia<<endl;
+    cout<<line<<endl;
     cout<<"Witaj w bazie danych ludzi pracy! Wybierz czynnosc:\n"
     "1 - wyswietlenie pracownikow\n"
     "2 - dodaj nowego pracownika\n"
@@ -53,14 +53,16 @@ int main()
     "4 - zapisz do pliku .csv\n"
     "5 - odczyt z pliku\n"
     "0 - koniec\n";
-    cout<<linia<<endl;
+    cout<<line<<endl;
     //======================MENU==============================================
+    int choice=1;           //zmienna do wyboru opcji
+
     while(choice)
     {
 
         cout<<"Twoj wybor: ";
         cin>>choice;
-        while(cin.fail()) // dopóki podawane sa bledne dane
+        while(cin.fail())   // dopóki podawane sa bledne dane
         {
           cout<<"Podaj liczbe z zakresu! "; //komunikat bledu
           cin.clear();                      //kasowanie flagi bledu strumienia
@@ -78,7 +80,7 @@ int main()
 
             case 1: //wyswietlenie dynamicznej tablicy
                 {
-                    wyswietl_emp_tab(emp_tab);
+                    print_emp_tab(emp_tab);
                     break;
                 }
 
@@ -86,7 +88,7 @@ int main()
                 {
                     cout<<"Dodawanie nowego pracownika:\n";
                     emp_tab.push_back(Employee());
-                    a++;
+                    i++;                                        //i - zmienna indeksowa dynamicznej tablicy obiektów
                     emp_tab[emp_tab.size()-1].set_employee();
                     break;
                 }
@@ -147,7 +149,7 @@ int main()
     return 0;
 }
 
-void wyswietl_emp_tab(vector <Employee> &tab )
+void print_emp_tab(vector <Employee> &tab )
 {
     if (!tab.size()) cout<<"Pusto!:(\n";
     else
@@ -181,19 +183,30 @@ int write_to_file(vector <Employee> &tab, string write_path) //& przesłanie prz
     //===========================
 
     NewFile.open(write_path);
-    NewFile<<"Imie;Nazwisko;Plec;Firma;Zadowolenie;Wynagrodzenie"<<endl;
-    for(int i=0;i<tab.size();i++)
+    if(NewFile.good())
     {
-        NewFile<<tab[i].show_name()<<";";
-        NewFile<<tab[i].show_surname()<<";";
-        NewFile<<tab[i].show_sex()<<";";
-        NewFile<<tab[i].show_company()<<";";
-        NewFile<<tab[i].show_satif()<<";";
-        NewFile<<tab[i].show_salary()<<";";
-        NewFile<<"\n";
+        NewFile<<"Imie;Nazwisko;Plec;Firma;Zadowolenie;Wynagrodzenie"<<endl;
+        for(int i=0;i<tab.size();i++)
+        {
+            NewFile<<tab[i].show_name()<<";";
+            NewFile<<tab[i].show_surname()<<";";
+            NewFile<<tab[i].show_sex()<<";";
+            NewFile<<tab[i].show_company()<<";";
+            NewFile<<tab[i].show_satif()<<";";
+            NewFile<<tab[i].show_salary()<<";";
+            NewFile<<"\n";
+        }
+        cout<<"\nZapisano "<<write_path<<"!\n\n";
+        NewFile.close();
+        return 1;
     }
-    cout<<"\nZapisano "<<write_path<<"!\n\n";
-    NewFile.close();
+    else
+    {
+        cout<<"otwarcie pliku sie nie powiodlo\n";
+        NewFile.close();
+        return 0;
+    }
+
 }
 
 int read_from_file(vector <Employee> &tab,string read_path)
@@ -213,19 +226,19 @@ int read_from_file(vector <Employee> &tab,string read_path)
     if(file.good())
     {
         //cout<<"plik udalo sie otworzyc\n";
-        string wiersz;  //przechowuje wiersz
-        int lwiersz=0;  //liczba wierszy
+        string line;  //przechowuje wiersz
+        int num_of_lines=0;  //liczba wierszy
         string item;
 
         //usuniecie poprzednich elementow
         tab.clear();
 
         //analiza wierszy
-        while(getline(file, wiersz)) //dopoki wiersz niepusty
+        while(getline(file, line)) //dopoki wiersz niepusty
         {
-            lwiersz++;
-            if(lwiersz==1) continue; //pomijamy 1 wiersz (legende)
-            stringstream ss(wiersz);
+            num_of_lines++;
+            if(num_of_lines==1) continue; //pomijamy 1 wiersz (legende)
+            stringstream ss(line);
             Employee *empl = new Employee(); //utworzenie dynamicznego obiektu
             //uzupelnianie danych nowego obiektu:
             //imie
@@ -260,7 +273,7 @@ int read_from_file(vector <Employee> &tab,string read_path)
     }
     else
     {
-        //cout<<"otwarcie pliku sie nie powiodlo\n";
+        cout<<"otwarcie pliku sie nie powiodlo\n";
         file.close();
         return 0;
     }

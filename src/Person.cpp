@@ -16,49 +16,49 @@ Person::~Person()
 string Person::show_name()
 {
     cout.width(13);
-    cout<<left<<"Name: "<<name<<endl;
-    return name;
+    cout<<left<<"Name: "<<m_name<<endl;
+    return m_name;
 }
 
 string Person::show_surname()
 {
     cout.width(13);
-    cout<<"Surname: "<<surname<<std::endl;
-    return surname;
+    cout<<"Surname: "<<m_surname<<std::endl;
+    return m_surname;
 }
 
 char Person::show_sex()
 {
     cout.width(13);
-    cout<<"Sex: "<<sex<<endl;
-    return sex;
+    cout<<"Sex: "<<m_sex<<endl;
+    return m_sex;
 }
 
 string Person::show_company()
 {
     cout.width(13);
-    std::cout<<"Company: "<<company<<std::endl;
-    return company;
+    std::cout<<"Company: "<<m_company<<std::endl;
+    return m_company;
 }
 
 ///////////////////////////////////////////////////////
 
-void Person::set_name(string n)
+void Person::set_name(string name)
 {
-    name=n;
+    m_name=name;
 }
 
-void Person::set_surname(string s)
+void Person::set_surname(string surname)
 {
-    surname=s;
+    m_surname=surname;
 }
 
-void Person::set_sex(char c)
+void Person::set_sex(char sex)
 {
-    sex=c;
+    m_sex=sex;
 }
 
-void Person::set_company(string c)
+void Person::set_company(string company)
 {
-    company=c;
+    m_company=company;
 }

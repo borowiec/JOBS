@@ -16,8 +16,8 @@ class Employee: public Person
         void present();
         //=============================
 
-        void set_satif(int s);
-        void set_salary(double s);
+        void set_satif(int satifaction);
+        void set_salary(double salary);
         void set_result();
 
         //=========ustawienia zbiorcze=========
@@ -26,16 +26,16 @@ class Employee: public Person
 
         //przeciazanie konstruktorów
         Employee();
-        Employee(string n,string m,string comp,char c,int s,double sd,int t[]);
+        Employee(string name,string surname,string company,char sex,int satisfaction,double salary,int results[]);
         //destruktor
         virtual ~Employee();
 
     protected:
     private:
-        string company;         //firma zatrudniajaca
-        double salary;          //wynagrodzenie
-        int satisfaction;       //zadowolenie w %
-        int result[12]={0};     //miesieczny zysk dla firmy
+        string m_company;           //firma zatrudniajaca
+        double m_salary;            //wynagrodzenie
+        int m_satisfaction;         //zadowolenie w %
+        int result[12]={0};         //miesieczny zysk dla firmy
 
 };
 

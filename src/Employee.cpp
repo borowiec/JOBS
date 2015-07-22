@@ -8,25 +8,25 @@ using namespace std;
 ///////////////////KONSTRUKTORY////////////////////////
 Employee::Employee()
 {
-    name="Gall";
-    surname="Anonim";
-    sex='?';
-    company="NONE";
-    salary=0.00;
-    satisfaction=0;
+    m_name="Gall";
+    m_surname="Anonim";
+    m_sex='?';
+    m_company="NONE";
+    m_salary=0.00;
+    m_satisfaction=0;
     result[0]={0};
 }
 
-Employee::Employee(string n,string m,string comp,char c,int s,double sd,int t[])
+Employee::Employee(string name,string surname,string company,char sex,int satisfaction,double salary,int results[])
 {
-    name=n;
-    surname=m;
-    sex=c;
-    company=comp;
-    salary=sd;
-    satisfaction=s;
+    m_name=name;
+    m_surname=surname;
+    m_sex=sex;
+    m_company=company;
+    m_salary=salary;
+    m_satisfaction=satisfaction;
     for(int i=0;i<12;i++)
-    result[i]=t[i];
+    result[i]=results[i];
 }
 //////////////////////DEKONSTRUKTOR////////////////////////////////
 Employee::~Employee()
@@ -40,15 +40,15 @@ Employee::~Employee()
 int Employee::show_satif()
 {
     cout.width(13);
-    std::cout<<"Satisfacted: "<<satisfaction<<"%"<<std::endl;
-    return satisfaction;
+    std::cout<<"Satisfacted: "<<m_satisfaction<<"%"<<std::endl;
+    return m_satisfaction;
 }
 
 double Employee::show_salary()
 {
     cout.width(13);
-    std::cout<<left<<"Salary: "<<salary<<"$"<<std::endl;
-    return salary;
+    std::cout<<left<<"Salary: "<<m_salary<<"$"<<std::endl;
+    return m_salary;
 }
 
 void Employee::show_result()
@@ -76,14 +76,14 @@ void Employee::present()
 ////////////////////////////FUNKCJE USTAWIAJACE////////////////////////////
 
 
-void Employee::set_satif(int s)
+void Employee::set_satif(int satisfaction)
 {
-    satisfaction=s;
+    m_satisfaction=satisfaction;
 }
 
-void Employee::set_salary(double s)
+void Employee::set_salary(double salary)
 {
-    salary=s;
+    m_salary=salary;
 }
 
 void Employee::set_result()
@@ -98,34 +98,34 @@ void Employee::set_result()
 void Employee::set_employee()
 {
     //zmienne przechowujace
-    string n,sr,cmp;
-    char sx;
-    int sat;
-    double sal;
+    string name,surname,company;
+    char sex;
+    int satisfaction;
+    double salary;
 
     //wprowadzanie danych
     cout<<"Podaj imie: ";
-    cin>>n;
+    cin>>name;
     cout<<"Podaj nazwisko: ";
-    cin>>sr;
+    cin>>surname;
     cout<<"Podaj plec (M/K): ";
     do
     {
         cin.clear();
         cin.sync();
-        cin>>sx;
-        if(sx!='M' && sx!='K')
+        cin>>sex;
+        if(sex!='M' && sex!='K')
             cout<<"Niewlasciwy znak. Spróbuj jeszcze raz: ";
-    } while((sx!='M' && sx!='K'));
+    } while((sex!='M' && sex!='K'));
 
     cin.sync();
     cout<<"Podaj nazwe firmy: ";
-    getline(cin,cmp);
+    getline(cin,company);
     cout<<"Podaj zadowolenie w % (0-100): ";
     do
     {
-        cin>>sat;
-        if((sat<1 || sat>100))
+        cin>>satisfaction;
+        if((satisfaction<1 || satisfaction>100))
             cout<<"Wartosc poza zakresem.Spróbuj jeszcze raz: ";
         if(cin.fail())
         {
@@ -133,13 +133,13 @@ void Employee::set_employee()
             cin.sync();
         }
     }
-    while (sat<1 || sat>100);
+    while (satisfaction<1 || satisfaction>100);
 
     cout<<"Podaj wynagrodzenie w $: ";
     do
     {
-        cin>>sal;
-         if(sal<=0)
+        cin>>salary;
+         if(salary<=0)
             cout<<"Niepoprawne dane. Spróbuj jeszcze raz: ";
          if(cin.fail())
         {
@@ -147,14 +147,14 @@ void Employee::set_employee()
             cin.sync();
         }
 
-    } while(sal<=0);
+    } while(salary<=0);
     //wywolanie poszczegolnych funkcji
-    set_name(n);
-    set_surname(sr);
-    set_sex(sx);
-    set_company(cmp);
-    set_satif(sat);
-    set_salary(sal);
+    set_name(name);
+    set_surname(surname);
+    set_sex(sex);
+    set_company(company);
+    set_satif(satisfaction);
+    set_salary(salary);
     //set_result();
     cout<<"\nDodano pracownika!\n\n";
 }

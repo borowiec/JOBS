@@ -27,10 +27,10 @@ class Person
         virtual void present()=0;
 
     protected:
-        string name;
-        string surname;
-        char sex;
-        string company;
+        string m_name;
+        string m_surname;
+        char m_sex;
+        string m_company;
     private:
 };
 

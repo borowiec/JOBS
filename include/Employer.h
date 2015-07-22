@@ -8,7 +8,7 @@ class Employer: Person
 
 
         double show_salary();
-        void set_salary(double s);
+        void set_salary(double salary);
 
         //========prezentacja==========
         void present();
@@ -20,13 +20,13 @@ class Employer: Person
 
         //przeciazanie konstruktorów
         Employer();
-        Employer(string n,string m,string comp,char c,double sd);
+        Employer(string name,string surname,string company,char sex,double salary);
 
         //destruktor
         virtual ~Employer();
     protected:
     private:
-        double salary;          //wynagrodzenie pracodawcy
+        double m_salary;          //wynagrodzenie pracodawcy
 };
 
 #endif // EMPLOYER_H
